@@ -8,9 +8,9 @@
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f8fafc;color:#1a202c}
 #app{padding:14px}
-header{background:linear-gradient(135deg,#1a4731,#2d6a4f);color:white;border-radius:12px;padding:14px 20px;margin-bottom:12px;display:flex;align-items:center;gap:14px}
-header .icon{font-size:28px}
-header h1{font-size:17px;font-weight:700;margin-bottom:1px}
+header{background:linear-gradient(135deg,#1a4731,#2d6a4f);color:white;border-radius:12px;padding:14px 20px;margin-bottom:10px;display:flex;align-items:center;gap:14px}
+header .icon{font-size:26px}
+header h1{font-size:16px;font-weight:700;margin-bottom:1px}
 header p{font-size:11px;opacity:.85}
 .badge{background:rgba(255,255,255,.2);border-radius:20px;padding:2px 9px;font-size:10px;display:inline-block;margin-top:4px}
 #controls{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:10px;align-items:center}
@@ -18,26 +18,26 @@ header p{font-size:11px;opacity:.85}
 .layer-btn{font-size:11px;padding:4px 12px;border:1.5px solid #cbd5e0;border-radius:20px;background:white;color:#4a5568;cursor:pointer;font-weight:500}
 .layer-btn.active{background:#2d6a4f;color:white;border-color:#2d6a4f}
 #main{display:grid;grid-template-columns:1fr 230px;gap:12px}
-#canvas-wrap{background:white;border-radius:12px;border:1px solid #e2e8f0;box-shadow:0 2px 10px rgba(0,0,0,.05);overflow:auto}
-canvas{display:block;cursor:default}
+#cw{background:white;border-radius:12px;border:1px solid #e2e8f0;box-shadow:0 2px 10px rgba(0,0,0,.05);overflow:auto}
+canvas{display:block}
 #sidebar{display:flex;flex-direction:column;gap:9px}
 .card{background:white;border-radius:10px;border:1px solid #e2e8f0;padding:11px}
-.card-title{font-size:9px;font-weight:700;color:#718096;text-transform:uppercase;letter-spacing:.06em;margin-bottom:9px}
-.leg-row{display:flex;align-items:center;gap:7px;margin-bottom:7px;padding:2px 4px;border-radius:5px}
-.leg-sq{width:44px;height:36px;border-radius:4px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px}
-.leg-sq span{font-size:7px;font-weight:700;color:#1a202c;line-height:1.3;text-align:center}
-.leg-lbl{font-size:11px;color:#2d3748;font-weight:500}
-.leg-sub{font-size:9px;color:#718096}
-.leg-line-row{display:flex;align-items:center;gap:7px;margin-bottom:5px}
-.leg-line{height:3px;width:26px;border-radius:2px;flex-shrink:0}
-#info{min-height:90px}
-#info-name{font-size:12px;font-weight:600;color:#a0aec0;margin-bottom:4px;line-height:1.4;font-weight:400}
-#info-badge{font-size:10px;padding:2px 7px;border-radius:5px;display:none;margin-bottom:6px;font-weight:700}
+.ct{font-size:9px;font-weight:700;color:#718096;text-transform:uppercase;letter-spacing:.06em;margin-bottom:9px}
+.lr{display:flex;align-items:center;gap:7px;margin-bottom:7px;padding:2px 4px;border-radius:5px;cursor:pointer}
+.lr:hover{background:#f7fafc}
+.lsq{width:42px;height:42px;border-radius:4px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px}
+.lsq span{font-size:7px;font-weight:700;color:#1a202c;line-height:1.3;text-align:center}
+.ll{font-size:11px;color:#2d3748;font-weight:500}
+.ls{font-size:9px;color:#718096}
+.llr{display:flex;align-items:center;gap:7px;margin-bottom:5px}
+.lline{height:3px;width:26px;border-radius:2px;flex-shrink:0}
+#info-name{font-size:12px;color:#a0aec0;line-height:1.4}
+#info-badge{font-size:10px;padding:2px 7px;border-radius:5px;display:none;margin:5px 0;font-weight:700}
 #info-body{font-size:11px;color:#4a5568;line-height:1.6}
-.stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px}
-.stat{background:#f7fafc;border-radius:7px;padding:7px;text-align:center;border:1px solid #e2e8f0}
-.stat-n{font-size:18px;font-weight:700;color:#2d6a4f}
-.stat-l{font-size:9px;color:#718096;margin-top:1px}
+.sg{display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px}
+.sc{background:#f7fafc;border-radius:7px;padding:7px;text-align:center;border:1px solid #e2e8f0}
+.sn{font-size:18px;font-weight:700;color:#2d6a4f}
+.sl{font-size:9px;color:#718096;margin-top:1px}
 .sw{position:relative}
 #search{width:100%;padding:6px 9px 6px 26px;border:1px solid #e2e8f0;border-radius:7px;font-size:11px;outline:none}
 #search:focus{border-color:#2d6a4f}
@@ -45,146 +45,154 @@ canvas{display:block;cursor:default}
 #sr{position:absolute;top:100%;left:0;right:0;background:white;border:1px solid #e2e8f0;border-radius:7px;box-shadow:0 4px 14px rgba(0,0,0,.1);z-index:200;max-height:160px;overflow-y:auto;display:none}
 .sri{padding:7px 10px;font-size:11px;cursor:pointer;border-bottom:1px solid #f7fafc}
 .sri:hover{background:#f0fdf4}
-footer{text-align:center;font-size:10px;color:#a0aec0;margin-top:12px;padding:6px}
-@media(max-width:700px){#main{grid-template-columns:1fr}#sidebar{display:none}}
+#team-bar{background:white;border:1px solid #e2e8f0;border-radius:10px;padding:10px 16px;margin-top:10px;display:flex;flex-wrap:wrap;gap:4px 18px;align-items:center}
+.team-title{font-size:10px;font-weight:700;color:#718096;text-transform:uppercase;letter-spacing:.05em;width:100%;margin-bottom:2px}
+.member{font-size:11px;color:#2d3748}
+.member b{color:#1a4731}
+footer{text-align:center;font-size:10px;color:#a0aec0;margin-top:8px;padding:4px}
 </style>
 </head>
 <body>
 <div id="app">
-  <header>
-    <div class="icon">🌿</div>
-    <div>
-      <h1>Net-Map: Política Medioambiental — República Dominicana</h1>
-      <p>¿Quién tiene influencia sobre la política medioambiental? · END 2030 · Agenda ODS</p>
-      <span class="badge" id="total-badge">cargando...</span>
-    </div>
-  </header>
-  <div id="controls">
-    <span class="ctrl-label">Capa:</span>
-    <button class="layer-btn active" data-layer="all">Todas</button>
-    <button class="layer-btn" data-layer="authority">Autoridad</button>
-    <button class="layer-btn" data-layer="money">Dinero</button>
-    <button class="layer-btn" data-layer="influence">Influencia</button>
-    <button class="layer-btn" data-layer="conflict">Conflicto</button>
+<header>
+  <div class="icon">🌿</div>
+  <div>
+    <h1>Net-Map: Política Medioambiental — República Dominicana</h1>
+    <p>¿Quién tiene influencia sobre la política medioambiental? · END 2030 · Agenda ODS</p>
+    <span class="badge" id="tbadge">cargando...</span>
   </div>
-  <div id="main">
-    <div id="canvas-wrap"><canvas id="cv"></canvas></div>
-    <div id="sidebar">
-      <div class="card">
-        <div class="sw">
-          <span class="si">🔍</span>
-          <input id="search" type="text" placeholder="Buscar institución...">
-          <div id="sr"></div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-title">Categoría — color del cuadro</div>
-        <div class="leg-row">
-          <div class="leg-sq" style="background:#f6c90e;border:2px solid #b8900a"><span>Nombre</span><span>++</span><span>Inf:10</span></div>
-          <div><div class="leg-lbl">Instituciones del Estado</div><div class="leg-sub" id="cnt-gov"></div></div>
-        </div>
-        <div class="leg-row">
-          <div class="leg-sq" style="background:#4a9eed;border:2px solid #1255a0"><span>Nombre</span><span>++</span><span>Inf:10</span></div>
-          <div><div class="leg-lbl">Organismos Cooperantes</div><div class="leg-sub" id="cnt-intl"></div></div>
-        </div>
-        <div class="leg-row">
-          <div class="leg-sq" style="background:#f48fb1;border:2px solid #a01550"><span>Nombre</span><span>++</span><span>Inf:10</span></div>
-          <div><div class="leg-lbl">ONGs</div><div class="leg-sub" id="cnt-ong"></div></div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-title">Texto dentro del cuadro</div>
-        <div style="font-size:11px;color:#4a5568;line-height:2">
-          <b>Línea 1:</b> Nombre<br>
-          <b>Línea 2:</b> Postura (++ / + / +/- / - / --)<br>
-          <b>Línea 3:</b> Influencia (1–10)
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-title">Tipo de vínculo</div>
-        <div class="leg-line-row"><div class="leg-line" style="background:#1565c0"></div><div class="leg-lbl">Autoridad / jerarquía</div></div>
-        <div class="leg-line-row"><div class="leg-line" style="background:#16a34a"></div><div class="leg-lbl">Flujo de dinero</div></div>
-        <div class="leg-line-row"><div class="leg-line" style="background:#9333ea"></div><div class="leg-lbl">Influencia / abogacía</div></div>
-        <div class="leg-line-row"><div class="leg-line" style="background:#ef4444;border-top:3px dashed #ef4444;height:0"></div><div class="leg-lbl">Conflicto</div></div>
-      </div>
-      <div class="card" id="info">
-        <div id="info-name">Haz clic en un cuadro para ver detalles</div>
-        <div id="info-badge"></div>
-        <div id="info-body"></div>
-      </div>
-      <div class="stats">
-        <div class="stat"><div class="stat-n" id="s-gov">-</div><div class="stat-l">Estado</div></div>
-        <div class="stat"><div class="stat-n" id="s-intl">-</div><div class="stat-l">Cooperantes</div></div>
-        <div class="stat"><div class="stat-n" id="s-ong">-</div><div class="stat-l">ONGs</div></div>
+</header>
+<div id="controls">
+  <span class="ctrl-label">Capa:</span>
+  <button class="layer-btn active" data-layer="all">Todas</button>
+  <button class="layer-btn" data-layer="authority">Autoridad</button>
+  <button class="layer-btn" data-layer="money">Dinero</button>
+  <button class="layer-btn" data-layer="influence">Influencia</button>
+  <button class="layer-btn" data-layer="conflict">Conflicto</button>
+</div>
+<div id="main">
+  <div id="cw"><canvas id="cv"></canvas></div>
+  <div id="sidebar">
+    <div class="card">
+      <div class="sw">
+        <span class="si">🔍</span>
+        <input id="search" type="text" placeholder="Buscar institución...">
+        <div id="sr"></div>
       </div>
     </div>
+    <div class="card">
+      <div class="ct">Categoría — color del cuadro</div>
+      <div class="lr" data-cat="gov"><div class="lsq" style="background:#f6c90e;border:2px solid #b8900a"><span>Nombre</span><span>++</span><span>Inf:10</span></div><div><div class="ll">Instituciones del Estado</div><div class="ls" id="cg"></div></div></div>
+      <div class="lr" data-cat="intl"><div class="lsq" style="background:#4a9eed;border:2px solid #1255a0"><span>Nombre</span><span>++</span><span>Inf:10</span></div><div><div class="ll">Organismos Cooperantes</div><div class="ls" id="ci"></div></div></div>
+      <div class="lr" data-cat="ong"><div class="lsq" style="background:#f48fb1;border:2px solid #a01550"><span>Nombre</span><span>++</span><span>Inf:10</span></div><div><div class="ll">ONGs</div><div class="ls" id="co"></div></div></div>
+    </div>
+    <div class="card">
+      <div class="ct">Texto dentro del cuadro</div>
+      <div style="font-size:11px;color:#4a5568;line-height:2"><b>Línea 1:</b> Nombre<br><b>Línea 2:</b> Postura (++ / + / +/- / - / --)<br><b>Línea 3:</b> Influencia (1–10)</div>
+    </div>
+    <div class="card">
+      <div class="ct">Tipo de vínculo</div>
+      <div class="llr"><div class="lline" style="background:#1565c0"></div><div class="ll">Autoridad / jerarquía</div></div>
+      <div class="llr"><div class="lline" style="background:#16a34a"></div><div class="ll">Flujo de dinero</div></div>
+      <div class="llr"><div class="lline" style="background:#9333ea"></div><div class="ll">Influencia / abogacía</div></div>
+      <div class="llr"><div class="lline" style="background:#ef4444;border-top:3px dashed #ef4444;height:0"></div><div class="ll">Conflicto</div></div>
+    </div>
+    <div class="card">
+      <div id="info-name">Haz clic en un cuadro para ver detalles</div>
+      <div id="info-badge"></div>
+      <div id="info-body"></div>
+    </div>
+    <div class="sg">
+      <div class="sc"><div class="sn" id="sg">-</div><div class="sl">Estado</div></div>
+      <div class="sc"><div class="sn" id="si2">-</div><div class="sl">Cooperantes</div></div>
+      <div class="sc"><div class="sn" id="so">-</div><div class="sl">ONGs</div></div>
+    </div>
   </div>
-  <footer>Grupo 5 · INTEC · Análisis de involucrados — Política Medioambiental RD · END 2030 &amp; Agenda ODS 2030</footer>
+</div>
+<div id="team-bar">
+  <div class="team-title">👥 Grupo 5 — Integrantes</div>
+  <div class="member"><b>Alam Enmanuel De Los Ángeles Charles</b> · ID: 1135723</div>
+  <div class="member"><b>Euclides Gadiel Henríquez</b> · ID: 1135218</div>
+  <div class="member"><b>Nashla Alejandra Pérez</b> · ID: 1135403</div>
+  <div class="member"><b>Victoria del Carmen Riera</b> · ID: 1130698</div>
+  <div class="member"><b>Wilmer Daniel Carela</b> · ID: 1113560</div>
+  <div class="member"><b>Sofía Bautista</b> · ID: 1131852</div>
+</div>
+<footer>Grupo 5 · INTEC · Análisis de Involucrados — Política Medioambiental RD · END 2030 &amp; Agenda ODS 2030</footer>
 </div>
 
 <script>
-const NW = 118, NH = 54, GAPX = 18, GAPY = 14;
+// S = side length of each SQUARE (equal width and height, like in the photo)
+const S = 66;
 
-const NODES = [
-  // ESTADO
-  {id:"MINPRES",  label:"Min. Presidencia",         full:"Ministerio de la Presidencia",                        cat:"gov", pos:1,  inf:9},
-  {id:"MEPyD",    label:"Min. Economía",            full:"Ministerio de Economía, Planificación y Desarrollo",  cat:"gov", pos:2,  inf:9},
-  {id:"MARN",     label:"Min. Medio Ambiente",      full:"Ministerio de Medio Ambiente y Recursos Naturales",   cat:"gov", pos:2,  inf:10},
-  {id:"CNCCMDL",  label:"Consejo Cambio Climático", full:"Consejo Nac. para el Cambio Climático y MDL",        cat:"gov", pos:2,  inf:8},
-  {id:"INDRHI",   label:"Inst. Rec. Hidráulicos",   full:"Instituto Nacional de Recursos Hidráulicos",          cat:"gov", pos:2,  inf:8},
-  {id:"MARENA",   label:"Min. Agricultura RN",      full:"Ministerio de Agricultura — Rec. Naturales",         cat:"gov", pos:1,  inf:7},
-  {id:"CAASD",    label:"Corp. Acueducto SD",       full:"Corporación Acueducto y Alcantarillado de SD",       cat:"gov", pos:1,  inf:7},
-  {id:"COE",      label:"Centro Emergencias",       full:"Centro de Operaciones de Emergencias",                cat:"gov", pos:2,  inf:7},
-  {id:"MITUR",    label:"Min. Turismo",             full:"Ministerio de Turismo",                               cat:"gov", pos:-1, inf:7},
-  {id:"INAPA",    label:"Inst. Aguas Potables",     full:"Instituto Nacional de Aguas Potables",                cat:"gov", pos:1,  inf:6},
-  {id:"MOPC",     label:"Min. Obras Públicas",      full:"Ministerio de Obras Públicas y Comunicaciones",      cat:"gov", pos:-1, inf:6},
-  {id:"EGEHID",   label:"Empresa Hidroeléctrica",   full:"Empresa Generadora Hidroeléctrica Dominicana",       cat:"gov", pos:0,  inf:6},
-  {id:"MINERD",   label:"Min. Educación",           full:"Ministerio de Educación — Educación Ambiental",      cat:"gov", pos:2,  inf:6},
-  {id:"TSC",      label:"Contraloría",              full:"Tribunal Superior Administrativo / Contraloría",     cat:"gov", pos:1,  inf:6},
-  {id:"MICM",     label:"Min. Industria",           full:"Ministerio de Industria, Comercio y MiPymes",        cat:"gov", pos:-1, inf:5},
-  {id:"ONAMET",   label:"Of. Meteorología",         full:"Oficina Nacional de Meteorología",                   cat:"gov", pos:2,  inf:5},
-  {id:"LigaMun",  label:"Liga Municipal",           full:"Liga Municipal Dominicana",                           cat:"gov", pos:0,  inf:5},
-  {id:"CODIA",    label:"Col. Ingenieros",          full:"Colegio Dominicano de Ingenieros y Arquitectos",     cat:"gov", pos:1,  inf:5},
-  {id:"INDOCAL",  label:"Inst. Calidad",            full:"Instituto Dominicano para la Calidad",               cat:"gov", pos:1,  inf:5},
-  // COOPERANTES
-  {id:"PNUD",     label:"PNUD",                     full:"Programa de Naciones Unidas para el Desarrollo",     cat:"intl",pos:2,  inf:9},
-  {id:"BM",       label:"Banco Mundial",            full:"Banco Mundial — Proyectos de medio ambiente",       cat:"intl",pos:2,  inf:9},
-  {id:"GCF",      label:"Fondo Verde Clima",        full:"Fondo Verde para el Clima (GCF)",                   cat:"intl",pos:2,  inf:9},
-  {id:"FMAM",     label:"Fondo Amb. Mundial",       full:"Fondo para el Medio Ambiente Mundial (GEF)",        cat:"intl",pos:2,  inf:8},
-  {id:"BID",      label:"Banco Interamericano",     full:"Banco Interamericano de Desarrollo",                cat:"intl",pos:2,  inf:8},
-  {id:"PNUMA",    label:"PNUMA",                    full:"Prog. Naciones Unidas para el Medio Ambiente",      cat:"intl",pos:2,  inf:8},
-  {id:"UICN",     label:"Unión Conservación",       full:"Unión Intl. para la Conservación de la Naturaleza",cat:"intl",pos:2,  inf:7},
-  {id:"FAO",      label:"FAO — Alimentación",       full:"Org. Naciones Unidas para la Alimentación",         cat:"intl",pos:2,  inf:7},
-  {id:"GIZ",      label:"Coop. Alemana GIZ",        full:"Cooperación Alemana para el Desarrollo (GIZ)",      cat:"intl",pos:2,  inf:7},
-  {id:"CAF",      label:"Banco Desarro. AL",        full:"Banco de Desarrollo de América Latina (CAF)",       cat:"intl",pos:2,  inf:7},
-  {id:"UE",       label:"Unión Europea",            full:"Unión Europea — Delegación en RD",                 cat:"intl",pos:2,  inf:7},
-  {id:"USAID",    label:"USAID",                    full:"Agencia de EE.UU. para el Desarrollo Internacional",cat:"intl",pos:2,  inf:7},
-  {id:"OPS",      label:"OPS / OMS",                full:"Organización Panamericana de la Salud",             cat:"intl",pos:2,  inf:6},
-  {id:"AECID",    label:"Coop. Española",           full:"Agencia Española de Cooperación Internacional",    cat:"intl",pos:2,  inf:6},
-  {id:"JICA",     label:"Coop. Japonesa JICA",      full:"Japan International Cooperation Agency",           cat:"intl",pos:2,  inf:6},
-  {id:"WWF",      label:"WWF",                      full:"World Wildlife Fund — Oficina RD",                 cat:"intl",pos:2,  inf:6},
-  {id:"COSUDE",   label:"Coop. Suiza",              full:"Cooperación Suiza para el Desarrollo",             cat:"intl",pos:2,  inf:6},
-  // ONGs
-  {id:"ECORED",   label:"Red Empres. Sostenible",   full:"Red Empresarial para el Desarrollo Sostenible",    cat:"ong", pos:2,  inf:7},
-  {id:"GJ",       label:"Grupo Jaragua",            full:"Grupo Jaragua — Conservación de biodiversidad",   cat:"ong", pos:2,  inf:7},
-  {id:"FondoAgua",label:"Fondo Agua SD",            full:"Fondo de Agua de Santo Domingo",                  cat:"ong", pos:2,  inf:7},
-  {id:"TNC",      label:"Nature Conservancy",       full:"The Nature Conservancy — RD",                     cat:"ong", pos:2,  inf:7},
-  {id:"CEDAF",    label:"Centro Agrop. Forestal",   full:"Centro para el Desarrollo Agropecuario y Forestal",cat:"ong",pos:1,  inf:6},
-  {id:"CEC",      label:"Centro Ecodesarrollo",     full:"Centro para la Conservación y Ecodesarrollo",     cat:"ong", pos:2,  inf:6},
-  {id:"Atabey",   label:"Fund. Atabey",             full:"Fundación Atabey — Agua y ecosistemas",           cat:"ong", pos:2,  inf:6},
-  {id:"NaturaS",  label:"Natura y Sociedad",        full:"Natura y Sociedad — Bosques y biodiversidad",     cat:"ong", pos:2,  inf:6},
-  {id:"ClimaRD",  label:"Red Cambio Climático",     full:"Red Dominicana de Cambio Climático",              cat:"ong", pos:2,  inf:6},
-  {id:"SurFuturo",label:"Fund. Sur Futuro",         full:"Fundación Sur Futuro — desarrollo sustentable",  cat:"ong", pos:2,  inf:6},
-  {id:"INTEC",    label:"INTEC",                    full:"Instituto Tecnológico de Santo Domingo",          cat:"ong", pos:2,  inf:6},
-  {id:"Pronatura",label:"Pronatura RD",             full:"Pronatura RD — Medio ambiente y pesca",          cat:"ong", pos:2,  inf:6},
-  {id:"UASD",     label:"Univ. Autónoma SD",        full:"Universidad Autónoma de Santo Domingo",          cat:"ong", pos:2,  inf:6},
-  {id:"PUCMM",    label:"Univ. Católica",           full:"Pontificia Universidad Católica Madre y Maestra",cat:"ong", pos:1,  inf:5},
-  {id:"OceanRD",  label:"Asoc. Oceanografía",       full:"Asociación de Oceanografía de RD",               cat:"ong", pos:2,  inf:5},
-  {id:"FPaisaje", label:"Fund. Paisajes",           full:"Fundación Paisajes Dominicanos",                  cat:"ong", pos:2,  inf:5},
-  {id:"AyudaMin", label:"Ayuda Mínima",             full:"Ayuda Mínima — cooperación ambiental",           cat:"ong", pos:2,  inf:5},
+// Positions traced from the screenshot photo
+// Each node: top-left corner x,y on the canvas
+const NODES=[
+  // top row
+  {id:"AyudaMin", label:"Ayuda Mínima",           full:"Ayuda Mínima — cooperación ambiental",                cat:"ong", pos:2, inf:5,  x:14,  y:18},
+  {id:"GJ",       label:"Grupo Jaragua",          full:"Grupo Jaragua — Conservación de biodiversidad",       cat:"ong", pos:2, inf:7,  x:120, y:50},
+  {id:"PNUD",     label:"PNUD",                   full:"Programa de Naciones Unidas para el Desarrollo",      cat:"intl",pos:2, inf:9,  x:232, y:14},
+  {id:"MOPC",     label:"Min. Obras Públicas",    full:"Ministerio de Obras Públicas y Comunicaciones",       cat:"gov", pos:-1,inf:6,  x:356, y:10},
+  {id:"MEPyD",    label:"Min. Economía",          full:"Ministerio de Economía, Planificación y Desarrollo",  cat:"gov", pos:2, inf:9,  x:490, y:8},
+  {id:"LigaMun",  label:"Liga Municipal",         full:"Liga Municipal Dominicana",                           cat:"gov", pos:0, inf:5,  x:636, y:10},
+  {id:"AECID",    label:"Coop. Española",         full:"Agencia Española de Cooperación Internacional",      cat:"intl",pos:2, inf:6,  x:754, y:10},
+  {id:"TNC",      label:"Nature Conservancy",     full:"The Nature Conservancy — RD",                        cat:"ong", pos:2, inf:7,  x:874, y:10},
+  // second row
+  {id:"ClimaRD",  label:"Red Cambio Climático",   full:"Red Dominicana de Cambio Climático",                  cat:"ong", pos:2, inf:6,  x:14,  y:106},
+  {id:"MITUR",    label:"Min. Turismo",           full:"Ministerio de Turismo",                               cat:"gov", pos:-1,inf:7,  x:218, y:100},
+  {id:"FPaisaje", label:"Fund. Paisajes",         full:"Fundación Paisajes Dominicanos",                     cat:"ong", pos:2, inf:5,  x:348, y:96},
+  {id:"OceanRD",  label:"Asoc. Oceanografía",    full:"Asociación de Oceanografía de RD",                   cat:"ong", pos:2, inf:5,  x:502, y:98},
+  {id:"BM",       label:"Banco Mundial",          full:"Banco Mundial — Proyectos de medio ambiente",        cat:"intl",pos:2, inf:9,  x:718, y:94},
+  {id:"CODIA",    label:"Col. Ingenieros",        full:"Colegio Dominicano de Ingenieros y Arquitectos",     cat:"gov", pos:1, inf:5,  x:874, y:98},
+  // third row
+  {id:"MINPRES",  label:"Min. Presidencia",       full:"Ministerio de la Presidencia",                       cat:"gov", pos:1, inf:9,  x:62,  y:186},
+  {id:"CEC",      label:"Centro Ecodesarrollo",   full:"Centro para la Conservación y Ecodesarrollo",        cat:"ong", pos:2, inf:6,  x:14,  y:278},
+  {id:"UE",       label:"Unión Europea",          full:"Unión Europea — Delegación en RD",                  cat:"intl",pos:2, inf:7,  x:218, y:190},
+  {id:"CAASD",    label:"Corp. Acueducto SD",     full:"Corporación Acueducto y Alcantarillado de SD",       cat:"gov", pos:1, inf:7,  x:358, y:180},
+  {id:"MARENA",   label:"Min. Agricultura RN",    full:"Ministerio de Agricultura — Rec. Naturales",         cat:"gov", pos:1, inf:7,  x:604, y:186},
+  {id:"OPS",      label:"OPS / OMS",              full:"Organización Panamericana de la Salud",              cat:"intl",pos:2, inf:6,  x:744, y:186},
+  {id:"ECORED",   label:"Red Empres. Sostenible", full:"Red Empresarial para el Desarrollo Sostenible",      cat:"ong", pos:2, inf:7,  x:874, y:182},
+  // fourth row
+  {id:"MICM",     label:"Min. Industria",         full:"Ministerio de Industria, Comercio y MiPymes",        cat:"gov", pos:-1,inf:5,  x:100, y:270},
+  {id:"FMAM",     label:"Fondo Amb. Mundial",     full:"Fondo para el Medio Ambiente Mundial (GEF)",         cat:"intl",pos:2, inf:8,  x:272, y:270},
+  {id:"FAO",      label:"FAO — Alimentación",     full:"Org. Naciones Unidas para la Alimentación",          cat:"intl",pos:2, inf:7,  x:462, y:266},
+  {id:"INAPA",    label:"Inst. Aguas Potables",   full:"Instituto Nacional de Aguas Potables",               cat:"gov", pos:1, inf:6,  x:650, y:272},
+  {id:"CNCCMDL",  label:"Consejo Cambio Climático",full:"Consejo Nac. para el Cambio Climático y MDL",      cat:"gov", pos:2, inf:8,  x:860, y:270},
+  // fifth row
+  {id:"NaturaS",  label:"Natura y Sociedad",      full:"Natura y Sociedad — Bosques y biodiversidad",        cat:"ong", pos:2, inf:6,  x:14,  y:360},
+  {id:"CAF",      label:"Banco Desarro. AL",      full:"Banco de Desarrollo de América Latina (CAF)",        cat:"intl",pos:2, inf:7,  x:130, y:356},
+  {id:"INTEC",    label:"INTEC",                  full:"Instituto Tecnológico de Santo Domingo",             cat:"ong", pos:2, inf:6,  x:272, y:354},
+  {id:"UASD",     label:"Univ. Autónoma SD",      full:"Universidad Autónoma de Santo Domingo",             cat:"ong", pos:2, inf:6,  x:400, y:352},
+  {id:"PUCMM",    label:"Univ. Católica",         full:"Pontificia Universidad Católica Madre y Maestra",   cat:"ong", pos:1, inf:5,  x:540, y:354},
+  {id:"INDOCAL",  label:"Inst. Calidad",          full:"Instituto Dominicano para la Calidad",              cat:"gov", pos:1, inf:5,  x:860, y:358},
+  // sixth row
+  {id:"INDRHI",   label:"Inst. Rec. Hidráulicos", full:"Instituto Nacional de Recursos Hidráulicos",         cat:"gov", pos:2, inf:8,  x:62,  y:450},
+  {id:"MINERD",   label:"Min. Educación",         full:"Ministerio de Educación — Educación Ambiental",      cat:"gov", pos:2, inf:6,  x:170, y:450},
+  {id:"TSC",      label:"Contraloría",            full:"Tribunal Superior Administrativo / Contraloría",    cat:"gov", pos:1, inf:6,  x:272, y:446},
+  {id:"Pronatura",label:"Pronatura RD",           full:"Pronatura RD — Medio ambiente y pesca",             cat:"ong", pos:2, inf:6,  x:388, y:444},
+  {id:"Atabey",   label:"Fund. Atabey",           full:"Fundación Atabey — Agua y ecosistemas",             cat:"ong", pos:2, inf:6,  x:530, y:440},
+  {id:"ONAMET",   label:"Of. Meteorología",       full:"Oficina Nacional de Meteorología",                  cat:"gov", pos:2, inf:5,  x:388, y:524},
+  {id:"MARN",     label:"Min. Medio Ambiente",    full:"Ministerio de Medio Ambiente y Recursos Naturales",  cat:"gov", pos:2, inf:10, x:776, y:432},
+  // seventh row
+  {id:"COE",      label:"Centro Emergencias",     full:"Centro de Operaciones de Emergencias",               cat:"gov", pos:2, inf:7,  x:14,  y:536},
+  {id:"EGEHID",   label:"Empresa Hidroeléctrica", full:"Empresa Generadora Hidroeléctrica Dominicana",       cat:"gov", pos:0, inf:6,  x:130, y:536},
+  {id:"JICA",     label:"Coop. Japonesa JICA",    full:"Japan International Cooperation Agency",            cat:"intl",pos:2, inf:6,  x:272, y:530},
+  {id:"WWF",      label:"WWF",                    full:"World Wildlife Fund — Oficina RD",                  cat:"intl",pos:2, inf:6,  x:388, y:614},
+  {id:"PNUMA",    label:"PNUMA",                  full:"Prog. Naciones Unidas para el Medio Ambiente",      cat:"intl",pos:2, inf:8,  x:530, y:524},
+  {id:"BID",      label:"Banco Interamericano",   full:"Banco Interamericano de Desarrollo",                cat:"intl",pos:2, inf:8,  x:690, y:530},
+  // eighth row
+  {id:"UICN",     label:"Unión Conservación",     full:"Unión Intl. para la Conservación de la Naturaleza",cat:"intl",pos:2, inf:7,  x:110, y:626},
+  {id:"CEDAF",    label:"Centro Agrop. Forestal", full:"Centro para el Desarrollo Agropecuario y Forestal", cat:"ong", pos:1, inf:6,  x:462, y:708},
+  {id:"GIZ",      label:"Coop. Alemana GIZ",      full:"Cooperación Alemana para el Desarrollo (GIZ)",     cat:"intl",pos:2, inf:7,  x:560, y:622},
+  {id:"USAID",    label:"USAID",                  full:"Agencia de EE.UU. para el Desarrollo Internacional",cat:"intl",pos:2, inf:7,  x:690, y:618},
+  {id:"SurFuturo",label:"Fund. Sur Futuro",       full:"Fundación Sur Futuro — desarrollo sustentable",     cat:"ong", pos:2, inf:6,  x:874, y:614},
+  // bottom row
+  {id:"FondoAgua",label:"Fondo Agua SD",          full:"Fondo de Agua de Santo Domingo",                    cat:"ong", pos:2, inf:7,  x:14,  y:712},
+  {id:"GCF",      label:"Fondo Verde Clima",      full:"Fondo Verde para el Clima (GCF)",                  cat:"intl",pos:2, inf:9,  x:150, y:712},
+  {id:"COSUDE",   label:"Coop. Suiza",            full:"Cooperación Suiza para el Desarrollo",             cat:"intl",pos:2, inf:6,  x:360, y:718},
 ];
 
-const LINKS = [
+const LINKS=[
   {s:"MINPRES",t:"MARN",     type:"authority"},
   {s:"MINPRES",t:"MEPyD",    type:"authority"},
   {s:"MINPRES",t:"MOPC",     type:"authority"},
@@ -234,258 +242,170 @@ const LINKS = [
   {s:"MITUR",    t:"MARN",    type:"conflict"},
 ];
 
-const CAT_FILL   = {gov:"#f6c90e", intl:"#4a9eed", ong:"#f48fb1"};
-const CAT_STROKE = {gov:"#b8900a", intl:"#1255a0", ong:"#a01550"};
-const CAT_LABEL  = {gov:"Instituciones del Estado", intl:"Organismos Cooperantes", ong:"ONGs"};
-const POS_SHORT  = {"-2":"--","-1":"-","0":"+/-","1":"+","2":"++"};
-const POS_FULL   = {"-2":"[--] Muy en contra","-1":"[-] En contra","0":"[+/-] Neutral","1":"[+] A favor","2":"[++] Muy a favor"};
-const LINK_COLOR = {authority:"#1565c0", money:"#16a34a", influence:"#9333ea", conflict:"#ef4444"};
+const CF={gov:"#f6c90e",intl:"#4a9eed",ong:"#f48fb1"};
+const CS={gov:"#b8900a",intl:"#1255a0",ong:"#a01550"};
+const CL={gov:"Instituciones del Estado",intl:"Organismos Cooperantes",ong:"ONGs"};
+const PS={"-2":"--","-1":"-","0":"+/-","1":"+","2":"++"};
+const PF={"-2":"[--] Muy en contra","-1":"[-] En contra","0":"[+/-] Neutral","1":"[+] A favor","2":"[++] Muy a favor"};
+const LC={authority:"#1565c0",money:"#16a34a",influence:"#9333ea",conflict:"#ef4444"};
 
-const cv  = document.getElementById("cv");
-const ctx = cv.getContext("2d");
-let activeLayer="all", focusNode=null, hoverNode=null;
+const cv=document.getElementById("cv");
+const ctx=cv.getContext("2d");
+let layer="all",focus=null,hover=null;
 
-// ── GUARANTEED NO-OVERLAP GRID LAYOUT ────────────────────────
-// Place nodes on a strict grid. Interleave categories so they mix.
-// 7 columns × 8 rows = 56 slots for 53 nodes — plenty of room.
+const W=Math.max(...NODES.map(n=>n.x))+S+20;
+const H=Math.max(...NODES.map(n=>n.y))+S+20;
+cv.width=W; cv.height=H;
+cv.style.width=W+"px"; cv.style.height=H+"px";
 
-const COLS = 7;
-const PADX = 28, PADY = 28;
-const CELLW = NW + GAPX;
-const CELLH = NH + GAPY;
+// center of each square
+function cx(n){return n.x+S/2;}
+function cy(n){return n.y+S/2;}
 
-// Interleave the three categories so they're mixed across grid
-function buildMixedOrder() {
-  const gov  = NODES.filter(n=>n.cat==="gov");
-  const intl = NODES.filter(n=>n.cat==="intl");
-  const ong  = NODES.filter(n=>n.cat==="ong");
-  const result = [];
-  const maxLen = Math.max(gov.length, intl.length, ong.length);
-  // Interleave: gov, intl, ong, gov, intl, ong ...
-  for (let i=0; i<maxLen; i++) {
-    if (gov[i])  result.push(gov[i]);
-    if (intl[i]) result.push(intl[i]);
-    if (ong[i])  result.push(ong[i]);
-  }
-  return result;
-}
+function draw(){
+  ctx.clearRect(0,0,W,H);
 
-const ordered = buildMixedOrder();
-const positions = {};
-ordered.forEach((n, i) => {
-  const col = i % COLS;
-  const row = Math.floor(i / COLS);
-  positions[n.id] = {
-    x: PADX + col * CELLW,
-    y: PADY + row * CELLH
-  };
-});
-
-const ROWS = Math.ceil(ordered.length / COLS);
-const W = PADX * 2 + COLS * CELLW - GAPX;
-const H = PADY * 2 + ROWS * CELLH - GAPY;
-
-cv.width  = W;
-cv.height = H;
-cv.style.width  = W + "px";
-cv.style.height = H + "px";
-
-function cx(n){ return positions[n.id].x + NW/2; }
-function cy(n){ return positions[n.id].y + NH/2; }
-
-// ── DRAW ─────────────────────────────────────────────────────
-function draw() {
-  ctx.clearRect(0, 0, W, H);
-
-  // Draw links first (behind nodes)
-  LINKS.forEach(l => {
-    if (activeLayer !== "all" && l.type !== activeLayer) return;
-    const s = NODES.find(n => n.id === l.s);
-    const t = NODES.find(n => n.id === l.t);
-    if (!s || !t) return;
-    const dim = focusNode && focusNode !== s.id && focusNode !== t.id;
-
-    const sx = cx(s), sy = cy(s);
-    const tx = cx(t), ty = cy(t);
-    const ang = Math.atan2(ty-sy, tx-sx);
-
+  // Links
+  LINKS.forEach(l=>{
+    if(layer!=="all"&&l.type!==layer)return;
+    const s=NODES.find(n=>n.id===l.s),t=NODES.find(n=>n.id===l.t);
+    if(!s||!t)return;
+    const dim=focus&&focus!==s.id&&focus!==t.id;
+    const sx=cx(s),sy=cy(s),tx=cx(t),ty=cy(t);
+    const ang=Math.atan2(ty-sy,tx-sx);
     ctx.save();
-    ctx.globalAlpha = dim ? 0.05 : 0.55;
-    ctx.strokeStyle = LINK_COLOR[l.type];
-    ctx.lineWidth = 1.8;
-    if (l.type==="conflict") ctx.setLineDash([6,4]);
-    else ctx.setLineDash([]);
-
-    ctx.beginPath();
-    ctx.moveTo(sx, sy);
-    ctx.lineTo(tx, ty);
-    ctx.stroke();
-
-    // Big filled arrowhead
-    if (!dim) {
-      ctx.setLineDash([]);
-      ctx.globalAlpha = 0.9;
-      ctx.fillStyle = LINK_COLOR[l.type];
-      const AS = 11;
-      // endpoint pulled back to box edge
-      const ex = tx - (NW/2+1)*Math.abs(Math.cos(ang))*Math.sign(Math.cos(ang)||1);
-      const ey = ty - (NH/2+1)*Math.abs(Math.sin(ang))*Math.sign(Math.sin(ang)||1);
+    ctx.globalAlpha=dim?0.05:0.6;
+    ctx.strokeStyle=LC[l.type];ctx.lineWidth=1.6;
+    if(l.type==="conflict")ctx.setLineDash([6,4]);else ctx.setLineDash([]);
+    ctx.beginPath();ctx.moveTo(sx,sy);ctx.lineTo(tx,ty);ctx.stroke();
+    if(!dim){
+      ctx.setLineDash([]);ctx.globalAlpha=0.9;ctx.fillStyle=LC[l.type];
+      // pull arrowhead back to edge of target square
+      const halfS=S/2+1;
+      const absCos=Math.abs(Math.cos(ang)),absSin=Math.abs(Math.sin(ang));
+      const tEdge = absCos>absSin ? halfS/absCos : halfS/absSin;
+      const ex=tx-tEdge*Math.cos(ang), ey=ty-tEdge*Math.sin(ang);
+      const AS=10;
       ctx.beginPath();
-      ctx.moveTo(ex, ey);
-      ctx.lineTo(ex - AS*Math.cos(ang-0.38), ey - AS*Math.sin(ang-0.38));
-      ctx.lineTo(ex - AS*Math.cos(ang+0.38), ey - AS*Math.sin(ang+0.38));
-      ctx.closePath();
-      ctx.fill();
+      ctx.moveTo(ex,ey);
+      ctx.lineTo(ex-AS*Math.cos(ang-0.38),ey-AS*Math.sin(ang-0.38));
+      ctx.lineTo(ex-AS*Math.cos(ang+0.38),ey-AS*Math.sin(ang+0.38));
+      ctx.closePath();ctx.fill();
     }
     ctx.restore();
   });
 
-  // Draw nodes
-  NODES.forEach(n => {
-    const isFocus = focusNode === n.id;
-    const isHover = hoverNode === n.id;
-    const dim = focusNode && !isFocus;
-    const x = positions[n.id].x;
-    const y = positions[n.id].y;
-
+  // Nodes — PERFECT SQUARES: S×S
+  NODES.forEach(n=>{
+    const isFocus=focus===n.id,isHover=hover===n.id,dim=focus&&!isFocus;
+    const x=n.x,y=n.y;
     ctx.save();
-    ctx.globalAlpha = dim ? 0.15 : 1;
-    if (isFocus) { ctx.shadowColor = CAT_STROKE[n.cat]; ctx.shadowBlur = 14; }
+    ctx.globalAlpha=dim?0.13:1;
+    if(isFocus){ctx.shadowColor=CS[n.cat];ctx.shadowBlur=14;}
 
-    // Border
-    ctx.fillStyle = CAT_STROKE[n.cat];
-    rr(ctx, x-2, y-2, NW+4, NH+4, 6);
-    ctx.fill();
+    // Outer border square
+    ctx.fillStyle=CS[n.cat];
+    ctx.fillRect(x-2,y-2,S+4,S+4);
 
-    // Box fill
-    ctx.fillStyle = isHover ? CAT_FILL[n.cat]+"dd" : CAT_FILL[n.cat];
-    rr(ctx, x, y, NW, NH, 5);
-    ctx.fill();
-    ctx.shadowBlur = 0;
+    // Main colored square — SAME width and height (S×S = perfect square)
+    ctx.fillStyle=isHover?CF[n.cat]+"cc":CF[n.cat];
+    ctx.fillRect(x,y,S,S);
+    ctx.shadowBlur=0;
 
-    // ── Text ────────────────────────────────────
-    ctx.textAlign = "center";
-    ctx.textBaseline = "middle";
+    // ── 3 lines of text centered in the square ──────────
+    ctx.textAlign="center";
+    ctx.textBaseline="middle";
 
-    // Name (top 54%)
-    ctx.font = "bold 9px -apple-system,sans-serif";
-    ctx.fillStyle = "#1a202c";
-    wrapText(ctx, n.label, x+NW/2, y + NH*0.27, NW-10, 10);
+    // Divider line at 55% height
+    ctx.strokeStyle="rgba(0,0,0,0.15)";ctx.lineWidth=0.5;ctx.setLineDash([]);
+    ctx.beginPath();ctx.moveTo(x+4,y+S*0.55);ctx.lineTo(x+S-4,y+S*0.55);ctx.stroke();
 
-    // Divider
-    ctx.strokeStyle = "rgba(0,0,0,0.12)";
-    ctx.lineWidth = 0.5;
-    ctx.setLineDash([]);
-    ctx.beginPath();
-    ctx.moveTo(x+6, y+NH*0.54);
-    ctx.lineTo(x+NW-6, y+NH*0.54);
-    ctx.stroke();
+    // Line 1+2: Name (wraps) in top 55%
+    ctx.fillStyle="#1a202c";
+    ctx.font="bold 8px -apple-system,sans-serif";
+    wrap(n.label, x+S/2, y+S*0.28, S-8, 9);
 
-    // Postura + Influencia (bottom half)
-    ctx.font = "bold 9.5px -apple-system,sans-serif";
-    ctx.fillStyle = "#1a202c";
-    ctx.textAlign = "left";
-    ctx.fillText(POS_SHORT[String(n.pos)], x+8, y+NH*0.77);
-    ctx.textAlign = "right";
-    ctx.font = "8.5px -apple-system,sans-serif";
-    ctx.fillStyle = "rgba(0,0,0,0.6)";
-    ctx.fillText("Inf:"+n.inf, x+NW-7, y+NH*0.77);
+    // Line 3 left: Postura
+    ctx.font="bold 9px -apple-system,sans-serif";
+    ctx.fillStyle="#1a202c";
+    ctx.textAlign="left";
+    ctx.fillText(PS[String(n.pos)], x+5, y+S*0.77);
+
+    // Line 3 right: Inf
+    ctx.font="7.5px -apple-system,sans-serif";
+    ctx.fillStyle="rgba(0,0,0,0.6)";
+    ctx.textAlign="right";
+    ctx.fillText("Inf:"+n.inf, x+S-4, y+S*0.77);
 
     ctx.restore();
   });
 }
 
-function rr(ctx, x, y, w, h, r){
-  ctx.beginPath();
-  ctx.moveTo(x+r,y); ctx.lineTo(x+w-r,y);
-  ctx.quadraticCurveTo(x+w,y,x+w,y+r);
-  ctx.lineTo(x+w,y+h-r);
-  ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h);
-  ctx.lineTo(x+r,y+h);
-  ctx.quadraticCurveTo(x,y+h,x,y+h-r);
-  ctx.lineTo(x,y+r);
-  ctx.quadraticCurveTo(x,y,x+r,y);
-  ctx.closePath();
-}
-
-function wrapText(ctx, text, cx, y, maxW, lh){
-  const words = text.split(" ");
-  let line = "", lines = [];
-  for (const w of words){
-    const t = line ? line+" "+w : w;
-    if (ctx.measureText(t).width > maxW && line){ lines.push(line); line=w; }
-    else line = t;
+function wrap(text,cxp,y,mw,lh){
+  const words=text.split(" ");let line="",lines=[];
+  for(const w of words){
+    const t=line?line+" "+w:w;
+    if(ctx.measureText(t).width>mw&&line){lines.push(line);line=w;}else line=t;
   }
-  if (line) lines.push(line);
-  lines = lines.slice(0,2);
-  const sy = y - (lines.length-1)*lh*0.5;
-  lines.forEach((l,i) => ctx.fillText(l, cx, sy+i*lh));
+  if(line)lines.push(line);
+  lines=lines.slice(0,2);
+  const sy=y-(lines.length-1)*lh*0.5;
+  lines.forEach((l,i)=>ctx.fillText(l,cxp,sy+i*lh));
 }
 
-// ── Hit detection ─────────────────────────────────────────────
-function nodeAt(mx, my){
-  return NODES.find(n => {
-    const x=positions[n.id].x, y=positions[n.id].y;
-    return mx>=x && mx<=x+NW && my>=y && my<=y+NH;
-  });
+function nodeAt(mx,my){
+  return NODES.find(n=>mx>=n.x&&mx<=n.x+S&&my>=n.y&&my<=n.y+S);
 }
 
-// ── Events ───────────────────────────────────────────────────
-cv.addEventListener("mousemove", e => {
+// drag
+let drag=null,dox=0,doy=0,moved=false;
+cv.addEventListener("mousedown",e=>{
   const r=cv.getBoundingClientRect();
-  const mx=(e.clientX-r.left)*(W/r.width);
-  const my=(e.clientY-r.top)*(H/r.height);
-  const n=nodeAt(mx,my);
-  hoverNode=n?n.id:null;
-  cv.style.cursor=n?"pointer":"default";
-  draw();
+  const mx=(e.clientX-r.left)*(W/r.width),my=(e.clientY-r.top)*(H/r.height);
+  const n=nodeAt(mx,my);if(n){drag=n;dox=mx-n.x;doy=my-n.y;moved=false;}
 });
-
-cv.addEventListener("click", e => {
+cv.addEventListener("mousemove",e=>{
   const r=cv.getBoundingClientRect();
-  const mx=(e.clientX-r.left)*(W/r.width);
-  const my=(e.clientY-r.top)*(H/r.height);
-  const n=nodeAt(mx,my);
-  if(n){ focusNode=focusNode===n.id?null:n.id; showInfo(focusNode?n:null); }
-  else { focusNode=null; showInfo(null); }
-  draw();
+  const mx=(e.clientX-r.left)*(W/r.width),my=(e.clientY-r.top)*(H/r.height);
+  if(drag){moved=true;drag.x=Math.max(2,Math.min(W-S-2,mx-dox));drag.y=Math.max(2,Math.min(H-S-2,my-doy));draw();return;}
+  const n=nodeAt(mx,my);hover=n?n.id:null;cv.style.cursor=n?"grab":"default";draw();
 });
+cv.addEventListener("mouseup",()=>{
+  if(drag&&!moved){focus=focus===drag.id?null:drag.id;showInfo(focus?drag:null);draw();}
+  drag=null;moved=false;
+});
+cv.addEventListener("mouseleave",()=>{drag=null;});
 
 document.querySelectorAll(".layer-btn").forEach(b=>{
   b.addEventListener("click",()=>{
-    activeLayer=b.dataset.layer;
+    layer=b.dataset.layer;
     document.querySelectorAll(".layer-btn").forEach(x=>x.classList.remove("active"));
-    b.classList.add("active");
+    b.classList.add("active");draw();
+  });
+});
+
+document.querySelectorAll(".lr[data-cat]").forEach(li=>{
+  li.addEventListener("click",()=>{
+    focus=null;
+    const nodes=NODES.filter(n=>n.cat===li.dataset.cat);
+    document.getElementById("info-name").textContent=CL[li.dataset.cat]+" ("+nodes.length+")";
+    document.getElementById("info-name").style.color="#2d3748";
+    document.getElementById("info-badge").style.display="none";
+    document.getElementById("info-body").innerHTML=nodes.map(n=>`<div style="display:flex;align-items:center;gap:5px;margin-bottom:3px"><div style="width:9px;height:9px;background:${CF[n.cat]};border:1px solid ${CS[n.cat]};flex-shrink:0"></div><span style="font-size:10px"><b>${n.label}</b> — Inf.${n.inf} · ${PF[String(n.pos)]}</span></div>`).join("");
     draw();
   });
 });
 
 function showInfo(n){
-  const ne=document.getElementById("info-name");
-  const be=document.getElementById("info-badge");
-  const bo=document.getElementById("info-body");
-  if(!n){
-    ne.textContent="Haz clic en un cuadro para ver detalles";
-    ne.style.color="#a0aec0"; ne.style.fontWeight="400";
-    be.style.display="none"; bo.innerHTML=""; return;
-  }
-  ne.style.color="#2d3748"; ne.style.fontWeight="600"; ne.textContent=n.full;
-  be.style.display="inline-block"; be.style.background=CAT_FILL[n.cat];
-  be.style.color=CAT_STROKE[n.cat]; be.textContent=CAT_LABEL[n.cat];
-  const out=LINKS.filter(l=>l.s===n.id);
-  const inp=LINKS.filter(l=>l.t===n.id);
-  bo.innerHTML=`
-    <div style="display:flex;gap:4px;flex-wrap:wrap;margin:5px 0">
-      <span style="font-size:10px;background:#f0fdf4;border:1px solid #bbf7d0;padding:2px 7px;border-radius:7px;color:#166534;font-weight:700">${POS_FULL[String(n.pos)]}</span>
-      <span style="font-size:10px;background:#eff6ff;border:1px solid #bfdbfe;padding:2px 7px;border-radius:7px;color:#1e40af;font-weight:700">Influencia: ${n.inf}/10</span>
-    </div>
-    <div style="font-size:10px"><b>Salientes:</b> ${out.length} · <b>Entrantes:</b> ${inp.length}</div>
-    ${out.length?`<div style="font-size:9px;color:#718096;margin-top:3px">${out.slice(0,5).map(l=>`→ ${l.t} <span style="color:${LINK_COLOR[l.type]}">(${l.type[0].toUpperCase()})</span>`).join("  ")}</div>`:""}
-  `;
+  const ne=document.getElementById("info-name"),be=document.getElementById("info-badge"),bo=document.getElementById("info-body");
+  if(!n){ne.textContent="Haz clic en un cuadro para ver detalles";ne.style.color="#a0aec0";be.style.display="none";bo.innerHTML="";return;}
+  ne.style.color="#2d3748";ne.textContent=n.full;
+  be.style.display="inline-block";be.style.background=CF[n.cat];be.style.color=CS[n.cat];be.textContent=CL[n.cat];
+  const out=LINKS.filter(l=>l.s===n.id),inp=LINKS.filter(l=>l.t===n.id);
+  bo.innerHTML=`<div style="display:flex;gap:4px;flex-wrap:wrap;margin:5px 0"><span style="font-size:10px;background:#f0fdf4;border:1px solid #bbf7d0;padding:2px 7px;border-radius:7px;color:#166534;font-weight:700">${PF[String(n.pos)]}</span><span style="font-size:10px;background:#eff6ff;border:1px solid #bfdbfe;padding:2px 7px;border-radius:7px;color:#1e40af;font-weight:700">Influencia: ${n.inf}/10</span></div><div style="font-size:10px"><b>Salientes:</b> ${out.length} · <b>Entrantes:</b> ${inp.length}</div>${out.length?`<div style="font-size:9px;color:#718096;margin-top:3px">${out.slice(0,5).map(l=>`→ ${l.t} <span style="color:${LC[l.type]}">(${l.type[0].toUpperCase()})</span>`).join("  ")}</div>`:""}`;
 }
 
-// Search
-const si=document.getElementById("search"), srEl=document.getElementById("sr");
+const si=document.getElementById("search"),srEl=document.getElementById("sr");
 si.addEventListener("input",()=>{
   const q=si.value.toLowerCase().trim();
   if(!q){srEl.style.display="none";return;}
@@ -494,30 +414,20 @@ si.addEventListener("input",()=>{
   srEl.innerHTML=m.map(n=>`<div class="sri" data-id="${n.id}"><b>${n.label}</b> — ${n.full}</div>`).join("");
   srEl.style.display="block";
   srEl.querySelectorAll(".sri").forEach(item=>{
-    item.addEventListener("click",()=>{
-      const n=NODES.find(x=>x.id===item.dataset.id);
-      focusNode=n.id; showInfo(n); draw();
-      si.value=n.label; srEl.style.display="none";
-    });
+    item.addEventListener("click",()=>{const n=NODES.find(x=>x.id===item.dataset.id);focus=n.id;showInfo(n);draw();si.value=n.label;srEl.style.display="none";});
   });
 });
 document.addEventListener("click",e=>{if(!e.target.closest(".sw"))srEl.style.display="none";});
 
-// Stats
-function initStats(){
-  const g=NODES.filter(n=>n.cat==="gov").length;
-  const i=NODES.filter(n=>n.cat==="intl").length;
-  const o=NODES.filter(n=>n.cat==="ong").length;
-  document.getElementById("cnt-gov").textContent=g+" instituciones";
-  document.getElementById("cnt-intl").textContent=i+" organismos";
-  document.getElementById("cnt-ong").textContent=o+" organizaciones";
-  document.getElementById("s-gov").textContent=g;
-  document.getElementById("s-intl").textContent=i;
-  document.getElementById("s-ong").textContent=o;
-  document.getElementById("total-badge").textContent=(g+i+o)+" actores · "+LINKS.length+" vínculos";
-}
+(function(){
+  const g=NODES.filter(n=>n.cat==="gov").length,i=NODES.filter(n=>n.cat==="intl").length,o=NODES.filter(n=>n.cat==="ong").length;
+  document.getElementById("cg").textContent=g+" instituciones";
+  document.getElementById("ci").textContent=i+" organismos";
+  document.getElementById("co").textContent=o+" organizaciones";
+  document.getElementById("sg").textContent=g;document.getElementById("si2").textContent=i;document.getElementById("so").textContent=o;
+  document.getElementById("tbadge").textContent=(g+i+o)+" actores · "+LINKS.length+" vínculos";
+})();
 
-initStats();
 draw();
 </script>
 </body>
